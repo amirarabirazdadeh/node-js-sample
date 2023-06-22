@@ -5,7 +5,8 @@ app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(request, response) {
-  response.send('Hello World!!')
+  const tenant = request.header('x-tenant');
+  response.append("XXXXXXXXXX", tenant).send(JSON.stringify(request.headers))
 })
 
 app.listen(app.get('port'), function() {
