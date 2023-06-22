@@ -1,4 +1,4 @@
-exports.handler = function (event, context, callback) {
-  console.log("EVENT: \n" + JSON.stringify(event, null, 2))
+module.exports.handler = async function(event, context, callback) {
+   console.log("EVENT: \n" + JSON.stringify(event, null, 2))
   return "Hello World!!"
-};
+}
