@@ -12,9 +12,3 @@ app.get('/', function(request, response) {
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
-
-
-exports.handler =  async function(event, context) {
-  console.log("EVENT: \n" + JSON.stringify(event, null, 2))
-  return "Hello World!!"
-}
