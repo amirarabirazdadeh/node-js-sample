@@ -1,2 +1,2 @@
-web: node index.js/handler
+web: node index.js.handler
 
