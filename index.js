@@ -1,5 +1,21 @@
+// CommonJs
+const fastify = require('fastify')({
+  logger: true
+})
 
-module.exports.handler =  async (event, context, callback) => {
-  console.log("EVENT: \n" + JSON.stringify(event, null, 2))
-  return "Hello World!!"
+fastify.get('/', async (request, reply) => {
+  return { hello: 'world!' }
+})
+
+/**
+ * Run the server!
+ */
+const start = async () => {
+  try {
+    await fastify.listen({ port: 3000 })
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
 }
+start()
