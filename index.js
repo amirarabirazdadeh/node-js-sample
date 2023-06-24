@@ -17,7 +17,7 @@
 
 
 
-const test = async () => {
+//
   // CommonJs
 const app = require('fastify')({
   logger: true
@@ -34,28 +34,59 @@ app.post('/', function (request, reply) {
       "X-Amz-Xccccc": `=========`
   })
   .send({
-    message: "Hello World!",
+    message: "POST Hello World!",
     context: { headers: { "x-tenant": "root" } }
   })
-})
-
-const response = await app.inject({
-  method: 'POST',
-  url: '/'
 });
 
-  console.log('body: ', JSON.stringify(response.json))
+app.post('/goodbye', function (request, reply) {
+  // console.log(request);
+   reply
+   .code(200)
+   .headers({
+       "XXXXXXXXXXXB": `OOOOOOOOOOOOOOOB`,
+       "X-Amz-Client-Context": `eyJYWFhYWFgiOiJRUVFRUVFRUVEifQ==`,
+       "X-Amz-Xccccc": `=========`
+   })
+   .send({
+     message: "Goodbye World!",
+     context: { headers: { "x-tenant": "root" } }
+   })
+ });
+
+ app.get('/', function (request, reply) {
+  // console.log(request);
+   reply
+   .code(200)
+   .headers({
+       "XXXXXXXXXXXB": `OOOOOOOOOOOOOOOB`,
+       "X-Amz-Client-Context": `eyJYWFhYWFgiOiJRUVFRUVFRUVEifQ==`,
+       "X-Amz-Xccccc": `=========`
+   })
+   .send({
+     message: "GET Hello World!",
+     context: { headers: { "x-tenant": "root" } }
+   })
+ });
+ 
+ const test = async () => {
+const response = await app.inject({
+  method: 'POST',
+  url: '/goodbye'
+});
+
+  console.log('body: ', JSON.parse(response.body))
 }
-test()
+test();
 
 
-// // Run the server!
+// Run the server!
 // app.listen({ port: 3000 }, function (err, address) {
 //   if (err) {
 //     app.log.error(err)
 //     process.exit(1)
 //   }
-//   // Server is now listening on ${address}
+//   //Server is now listening on ${address}
 // })
 
 
