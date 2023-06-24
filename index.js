@@ -15,23 +15,47 @@
 // Require the framework and instantiate it
 
 
-// CommonJs
-const fastify = require('fastify')({
+
+
+const test = async () => {
+  // CommonJs
+const app = require('fastify')({
   logger: true
 })
 
 // Declare a route
-fastify.get('/', function (request, reply) {
-  reply.send({ hello: 'world....' })
+app.post('/', function (request, reply) {
+ // console.log(request);
+  reply
+  .code(200)
+  .headers({
+      "XXXXXXXXXXXB": `OOOOOOOOOOOOOOOB`,
+      "X-Amz-Client-Context": `eyJYWFhYWFgiOiJRUVFRUVFRUVEifQ==`,
+      "X-Amz-Xccccc": `=========`
+  })
+  .send({
+    message: "Hello World!",
+    context: { headers: { "x-tenant": "root" } }
+  })
 })
 
-// Run the server!
-fastify.listen({ port: 3000 }, function (err, address) {
-  if (err) {
-    fastify.log.error(err)
-    process.exit(1)
-  }
-  // Server is now listening on ${address}
-})
+const response = await app.inject({
+  method: 'POST',
+  url: '/'
+});
+
+  console.log('body: ', JSON.stringify(response.json))
+}
+test()
+
+
+// // Run the server!
+// app.listen({ port: 3000 }, function (err, address) {
+//   if (err) {
+//     app.log.error(err)
+//     process.exit(1)
+//   }
+//   // Server is now listening on ${address}
+// })
 
 
