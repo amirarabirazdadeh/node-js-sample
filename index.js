@@ -13,10 +13,12 @@ fastify.get('/', function (request, reply) {
  */
 const start = async () => {
   try {
-    await app.inject({
+    const response = await fastify.inject({
       method: 'GET',
       url: '/'
-    })
+    });
+   console.log(response);
+   return JSON.parse(response);
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
