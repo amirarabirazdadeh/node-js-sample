@@ -17,8 +17,8 @@ const start = async () => {
       method: 'GET',
       url: '/'
     });
-   console.log(response);
-   return JSON.parse(response);
+   //console.log(response.body);
+   return JSON.parse(response.body);
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
