@@ -2,9 +2,9 @@
   "name": "node-js-sample",
   "version": "0.2.0",
   "description": "A sample Node.js app using Fastify 4",
-  "main": "index.js",
+  "main": "handler.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node handler.js"
   },
   "dependencies": {
     "aws-sdk": "^2.971.0"
@@ -22,6 +22,13 @@
     "heroku",
     "express"
   ],
+  "adio": {
+    "ignore": {
+      "src": [
+        "aws-sdk"
+      ]
+    }
+  },
   "author": "Mark Pundsack",
   "contributors": [
     "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
